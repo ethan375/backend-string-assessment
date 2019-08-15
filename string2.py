@@ -18,8 +18,15 @@
 
 
 def verbing(s):
-    """Your code goes here.  Edit this docstring."""
-    return
+    if len(s) >= 3:
+        if s[-3:] == 'ing':
+            new_string = s +'ly'
+            return new_string
+        else:
+            new_string = s + 'ing'
+            return new_string
+    else:
+        return s
 
 
 # E. not_bad
@@ -31,8 +38,16 @@ def verbing(s):
 # So 'This dinner is not that bad!' yields:
 # This dinner is good!
 def not_bad(s):
-    """Your code goes here.  Edit this docstring."""
-    return
+    not_index = s.find('not')
+    bad_index = s.find('bad')
+
+    if bad_index > not_index:
+        new_s = s[:not_index] + 'good' 
+        if s[-1].isalpha() == False:
+            new_s = new_s + s[-1]
+        return new_s
+    else: 
+        return s
 
 
 # F. front_back
@@ -43,8 +58,34 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
-    """Your code goes here.  Edit this docstring."""
-    return
+    len_a = len(a)
+    len_b = len(b)
+
+    x = 0
+    while x < 4:
+        if len_a % 2 == 0 and len_b % 2 == 0:
+            front_a = a[:len_a / 2]
+            back_a = a[len_a / 2:]
+            front_b = b[:len_b / 2]
+            back_b = b[len_b / 2:]
+        elif len_a % 2 != 0 and len_b % 2 != 0:
+            front_a = a[:len_a / 2 + 1]
+            back_a = a[len_a / 2:]
+            front_b = b[:len_b / 2 + 1]
+            back_b = b[len_b / 2:]
+        elif len_a % 2 == 0 and len_b % 2 != 0:
+            front_a = a[:len_a / 2]
+            back_a = a[len_a / 2:]
+            front_b = b[:len_b / 2 + 1]
+            back_b = b[len_b / 2:]
+        elif len_a % 2 != 0 and len_b % 2 == 0:
+            front_b = b[:len_b / 2]
+            back_b = b[len_b / 2:]
+            front_a = a[:len_a / 2 + 1]
+            back_a = a[len_a / 2:]
+        x += 1
+    return front_a + front_b + back_a + back_b
+
 
 
 # Provided simple test() function used in main() to print
